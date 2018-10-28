@@ -43,5 +43,5 @@ struct elem_t{
 /*i have not code for this function yet,but other files need them,so define them,let complier shut up */
 #define link(elem)		++elem->nlink
 #define unlink(elem)	--elem->nlink//bug??
-#define show(elem)
+#define show_elem(elem)
 #endif
