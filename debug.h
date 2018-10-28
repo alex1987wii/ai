@@ -16,9 +16,7 @@
 #include "ai_base.h"
 
 #ifdef AI_DEBUG
-extern volatile struct elem_t **elem_table;
-extern volatile long nr_elem;
-extern volatile long cap_elem;
+
 #define	debug_init
 #define debug_destroy
 
@@ -27,6 +25,27 @@ extern volatile long cap_elem;
 #define ai_warning(fmt,args...)	fprintf(stdout,"WARNING:%s:%s\t"fmt"\n",__FILE__,__func__,##args)
 #define ai_err(fmt,args...)		fprintf(stderr,"ERR:%s:%s:%d\t"fmt"\n",__FILE__,__func__,__LINE__,##args)
 #define ai_quit(fmt,args...)	({fprintf(stderr,"QUIT:%s:%s:%d\t"fmt"\n",__FILE__,__func__,__LINE__,##args);exit(1);})
+
+extern volatile struct elem_t **elem_table;
+extern volatile long nr_elem;
+extern volatile long cap_elem;
+
+static inline long count_elem(){
+	return nr_elem;
+}
+static inline long get_table_cap(){
+	return cap_elem;
+}
+static inline show_table(){
+	long i;
+	long remain = nr_elem;
+	for(i = 0; remain > 0 && i < cap_elem; ++i){
+		if(elem_table[i]){
+			show_elem(elem_table[i]);
+			--remain;
+		}
+	}
+}
 
 #else
 

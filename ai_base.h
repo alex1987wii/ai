@@ -10,9 +10,12 @@
 #ifndef	AI_BASE_H
 #define	AI_BASE_H
 
+
 #include "config.h"
 #include "types.h"
 #include "complier.h"
+#include "errno.h"
+
 enum _builtin_type_t{
 	T_NONE=0,
 	T_CHAR,
@@ -36,4 +39,9 @@ struct elem_t{
 	volatile long nlink;
 	struct elem_t *member_entry;
 };
+#warning "there is a bug here"
+/*i have not code for this function yet,but other files need them,so define them,let complier shut up */
+#define link(elem)		++elem->nlink
+#define unlink(elem)	--elem->nlink//bug??
+#define show(elem)
 #endif
