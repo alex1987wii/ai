@@ -14,8 +14,6 @@
 #include "types.h"
 #include "complier.h"
 enum _builtin_type_t{
-};
-enum _builtin_type_t{
 	T_NONE=0,
 	T_CHAR,
 	T_UCHAR,
@@ -35,6 +33,7 @@ enum _builtin_type_t{
 struct elem_t{
 	long type;
 	long nr_member;
+	volatile long nlink;
 	struct elem_t *member_entry;
 };
 #endif

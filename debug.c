@@ -32,7 +32,7 @@ int ai_table_add(struct elem_t *new_elem)
 	/*find the first empty elem*/
 	for(i = 0; i < cap_elem && elem_table[i] != NULL; ++i)
 		;
-	if(unlikey(i == cap_elem))
+	if(unlikely(i == cap_elem))
 		ai_quit("unexpected error!");
 	elem_table[i] = new_elem;
 	++new_elem->nlink;

@@ -26,4 +26,5 @@
 #define unlikely(x)		x
 #define barrier()
 
+#endif //__GNUC__
 #endif
