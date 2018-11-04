@@ -13,10 +13,10 @@
 
 #include "config.h"
 #include "types.h"
-#include "complier.h"
+#include "compiler.h"
 #include "errno.h"
 
-enum _builtin_type_t{
+enum ai_type_t{
 	T_NONE=0,
 	T_CHAR,
 	T_UCHAR,
@@ -32,15 +32,24 @@ enum _builtin_type_t{
 	T_DOUBLE,
 	T_S64,
 	T_U64,
+	T_KELEM,
+	T_AIELEM,
+	T_USERELEM,	/*is this necessary? */
+	T_USER,
+
 };
 struct elem_t{
-	long type;
-	long nr_member;
-	volatile long nlink;
+	u8 type;
+	u8 extern_type;	/*const, static, pointer,array,etc..*/
+	u8 member_structure; /*array,list,doublelist,tree,rbtree,graph,etc..*/
+	u8 nr_member;
+	volatile u32 nlink;
+	struct elem_t *parent_entry;
 	struct elem_t *member_entry;
+	long extern_data;
 };
 #warning "there is a bug here"
-/*i have not code for this function yet,but other files need them,so define them,let complier shut up */
+/*i have not code for this function yet,but other files need them,so define them,let compiler shut up */
 #define link(elem)		++elem->nlink
 #define unlink(elem)	--elem->nlink//bug??
 #define show_elem(elem)
