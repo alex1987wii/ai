@@ -16,8 +16,24 @@
 #include "compiler.h"
 #include "errno.h"
 
-enum ai_type_t{
+#define OBJ_BIT				0
+#define TYPE_BIT			1
+#define CONST_BIT			2
+#define STATIC_BIT			3
+#define POINT_BIT			4
+#define ARRAY_BIT			5
+#define AITYPE_BIT			6
+
+
+#define NOTYPE				0 /*reserved*/
+#define BUILTIN				1
+#define AITYPE				2
+#define USERTYPE			3
+
+enum builtin_type_t{
+
 	T_NONE=0,
+	T_VOID,
 	T_CHAR,
 	T_UCHAR,
 	T_S8,
@@ -31,19 +47,31 @@ enum ai_type_t{
 	T_FLOAT,
 	T_DOUBLE,
 	T_S64,
-	T_U64,
-	T_KELEM,
-	T_AIELEM,
-	T_USERELEM,	/*is this necessary? */
-	T_USER,
-
 };
+#warning "need fix here"
+/*do we add all the type here?*/
+enum ai_type_t{
+	/*save for T_NONE*/
+	T_SET=1,
+	T_FUNC,
+	T_OPERATION,
+	T_TYPE,
+	T_STRUCTURE,
+	T_PROPOSTION,
+	T_NAMESPACE,
+	T_EXPRESSION,
+	T_RULE,
+	T_RELATION,
+};
+
+
+#warning "need re-edit here"
 struct elem_t{
 	u8 type;
-	u8 extern_type;	/*const, static, pointer,array,etc..*/
 	u8 member_structure; /*array,list,doublelist,tree,rbtree,graph,etc..*/
-	u8 nr_member;
-	volatile u32 nlink;
+	u16 extern_type;	/*const, static, pointer,array,etc..*/
+	u16 nr_member;
+	u16 nlink;
 	struct elem_t *parent_entry;
 	struct elem_t *member_entry;
 	long extern_data;
