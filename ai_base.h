@@ -69,7 +69,7 @@ enum ai_type_t{
 struct elem_t{
 	u8 type;
 	u8 member_structure; /*array,list,doublelist,tree,rbtree,graph,etc..*/
-	u16 extern_type;	/*const, static, pointer,array,etc..*/
+	u16 extern_type; /*extern type in builtin and ai type*/	
 	u16 nr_member;
 	u16 nlink;
 	struct elem_t *parent_entry;
